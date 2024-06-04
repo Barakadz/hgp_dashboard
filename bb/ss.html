@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form class="form" id="myForm">
+        <input type="file" id="inpFile" >
+        <button type="submit">Upload file</button>
+    </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const myForm =document.getElementById("myForm");
+        const inpFile =document.getElementById("inpFile");
+        myForm.addEventListener("submit",e=>{
+            e.preventDefault();
+            const endpoint="upload.php";
+            const formData=new FormData();
+            console.log(inpFile.files);
+            formData.append("inpFile",inpFile.files[0]);
+
+
+            fetch(endpoint,{
+                method:"POST",
+                body:formData
+
+            }).catch(console.error)
+        })
+
+    </script>
+</body>
+</html>
